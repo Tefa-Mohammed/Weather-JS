@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body onload="realTime();">
+
+    <div class="container-fluid px-5 pb-5">
+        <!-- ========== start navbar ========== -->
+        <nav class="navbar navbar-expand-lg navbar-light py-3" id="navbar">
+            <a class="navbar-brand" href="#">
+                <img src="imgs/logo.png" alt="">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto w-50 d-flex justify-content-between">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Live Cameras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#">Photos </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#contact">Contact </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!-- ========== end navbar ========== -->
+
+        <!-- ======== the input ========= -->
+        <div class="row mx-0">
+            <div class="search-box col-lg-4 col-sm-12 offset-lg-8 offset-sm-0 my-4 position-relative">
+                <i class="fas fa-search"></i>
+                <input type="text" onkeyup="searchLocation();" class="form-control border-0 font-weight-bold myinput"
+                    id="search" placeholder="Find Your Location ..." autocomplete="off">
+            </div>
+        </div>
+
+        <div class="row text-center timing">
+            <h1 class="col-12 py-5 display-2 font-weight-bold" id="clock"></h1>
+            <h4 class="col-12 pb-5 display-3 font-weight-bold" id="text"></h4>
+        </div>
+
+        <!-- ============ contents to view th Weather ======== -->
+        <div class="row mx-0 contents">
+            <div class="col-lg-5 col-12">
+                <div id="index">
+                    <!-- <div class="card mb-3 border-0">
+                        <div class="card-header border-0">
+                            Friday<span class="float-right">15 May</span></div>
+                        <div class="card-body  text-center">
+                            <h1 class="card-title location text-left">cairo</h1>
+                            <h3 class="card-title temp font-weight-bold my-2">25<sup>o</sup>C</h3>
+                            <img src="imgs/cloudy.png" alt="Weather" class="img-fluid w-25 my-2">
+                            <p class="card-text mt-2">Very hot.</p>
+                        </div>
+                        <div class=" card-footer d-flex w-100 justify-content-around">
+                            <span><img src="imgs/umbrella.png" alt="" class="img-fluid w-25"> 20%</span>
+                            <span><img src="imgs/w.png" alt="" class="img-fluid w-25"> 18km/h</span>
+                            <span><img src="imgs/compass.png" alt="" class="img-fluid w-25"> East</span>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="col-lg-7 col-12">
+                <div class="row text-center mx-0 pt-5">
+                    <div class="col-6">
+                        <div id="nextIndex" class="anotherindex">
+                            <!-- <div class="card mb-3 border-0">
+                                <div class="card-header border-0">saturday</div>
+                                <div class="card-body">
+                                    <img src="imgs/umbrella.png" alt="Weather" class="img-fluid my-3">
+                                    <h3 class="card-title max-temp font-weight-bold my-2 text-white">5<sup>o</sup>C</h3>
+                                    <h5 class="card-title min-temp text-info">3<sup>o</sup>C
+                                    </h5>
+                                    <p class="card-text mt-2">cool</p>
+                                </div>
+                                <div class=" card-footer d-flex w-100 justify-content-around">
+                                    <span><img src="imgs/umbrella.png" alt="" class="img-fluid w-25"> 20%</span>
+                                    <span><img src="imgs/w.png" alt="" class="img-fluid w-25"> 18km/h</span>
+                                    <span><img src="imgs/compass.png" alt="" class="img-fluid w-25"> East</span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div id="thirdIndex" class="anotherindex">
+                            <!-- <div class="card mb-3 border-0">
+                                <div class="card-header border-0">saturday</div>
+                                <div class="card-body">
+                                    <img src="imgs/umbrella.png" alt="Weather" class="img-fluid my-3">
+                                    <h3 class="card-title max-temp font-weight-bold my-2 text-white">5<sup>o</sup>C</h3>
+                                    <h5 class="card-title min-temp text-info">3<sup>o</sup>C
+                                    </h5>
+                                    <p class="card-text mt-2">cool</p>
+                                </div>
+                                <div class=" card-footer d-flex w-100 justify-content-around">
+                                    <span><img src="imgs/umbrella.png" alt="" class="img-fluid w-25"> 20%</span>
+                                    <span><img src="imgs/w.png" alt="" class="img-fluid w-25"> 18km/h</span>
+                                    <span><img src="imgs/compass.png" alt="" class="img-fluid w-25"> East</span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== start contact us ===== -->
+    <section class="contact" id="contact">
+        <div class="overllay">
+            <div class="container py-5 d-flex align-items-center justify-content-center h-100 w-100">
+                <div class="contact-us row p-5 mt-5" style="background-color: #0B2B47;">
+                    <div class="send-message col-lg-7 col-md-12 col-sm-12  mb-lg-0 mb-5">
+                        <h5>Send Message Us </h5>
+                        <form action="" class="row w-100">
+                            <div class="col-md-6 col-sm-12"> <input type="text" name="name"
+                                    class="w-100 p-2 mb-4 form-control" value="" placeholder="Name..." required
+                                    autocomplete="off"></div>
+                            <div class="col-md-6 col-sm-12"> <input type="email" name="email" value=""
+                                    class="w-100 p-2 mb-4 form-control" placeholder="E-mail..." required
+                                    autocomplete="off"></div>
+                            <div class="col-md-6 col-sm-12"><input type="text" class="w-100 p-2 mb-4 form-control"
+                                    placeholder="Website..." required autocomplete="off"></div>
+                            <div class="col-md-6 col-sm-12"> <input type="text" name="name"
+                                    class="w-100 p-2 mb-4 form-control" value="" placeholder="Company Name..." required
+                                    autocomplete="off">
+                            </div>
+                            <div class="col-12"><textarea name="message" id="" rows="4"
+                                    class="w-100 p-2 mb-4 form-control"
+                                    placeholder="Please, leave us a message..."></textarea></div>
+                            <button type="submit" class="btn btn-danger mt-3 ml-3 px-4 py-2">SEND MESSAGE</button>
+                        </form>
+                    </div>
+
+                    <div class="get-in col-lg-5 col-md-12 col-sm-12 mt-lg-0 mt-5 p-0">
+                        <h5>Get in Touch </h5>
+                        <p>Lorem ipsum dolor sit amet
+                            consectetur adipisicing elit. Facilis dolorum dolorem soluta
+                            quidem expedita aperiam aliquid at. </p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-map-marker-alt"></i> 329 WASHINGTON ST BOSTON, MA 02108 </li>
+                            <li><i class="fas fa-mobile-alt"></i> (617) 557-0089 </li>
+                            <li><i class="far fa-envelope"></i> checoursera@gmail.com </li>
+                        </ul>
+                        <div class="icons d-flex">
+                            <div><i class="fab fa-facebook-f"></i></div>
+                            <div><i class="fab fa-instagram"></i></div>
+                            <div><i class="fab fa-twitter"></i></div>
+                            <div><i class="fab fa-pinterest"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end contact us  -->
+
+    <!-- start footer  -->
+    <div class="footer w-100 text-center">
+        <p class=" m-0 py-4">Made with <i class="fas fa-heart"></i> by Teeffaa Mohammed (15-5-2021). All
+            Rights
+            Reserved </p>
+    </div>
+
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
