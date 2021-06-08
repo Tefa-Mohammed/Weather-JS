@@ -30,35 +30,54 @@ var dayNum = dayN.getDate();
 
 
 function searchLocation () {
-
     if (validation() == true){
         getWeather(searchBox.value);
     }
 }
 
-function getWeather(city) {
+// function getWeather(city) {
 
-    myHttp.open("GET", `http://api.weatherapi.com/v1/forecast.json?key=35ad5f1819154542a6620725211105&q=${city}&days=3`);
-    myHttp.send();
-        myHttp.addEventListener("readystatechange", function(){
-            if (myHttp.readyState == 4 && myHttp.status == 200) {
-                    myLocation = JSON.parse(myHttp.response).location.name ;
-                    myDayTemp = JSON.parse(myHttp.response).current.temp_c ;
-                    myDayTempText = JSON.parse(myHttp.response).current.condition.text ;
-                    myDayTempIcon = JSON.parse(myHttp.response).current.condition.icon ;
+//     myHttp.open("GET", `http://api.weatherapi.com/v1/forecast.json?key=35ad5f1819154542a6620725211105&q=${city}&days=3`);
+//     myHttp.send();
+//         myHttp.addEventListener("readystatechange", function(){
+//             if (myHttp.readyState == 4 && myHttp.status == 200) {
+//                     myLocation = JSON.parse(myHttp.response).location.name ;
+//                     myDayTemp = JSON.parse(myHttp.response).current.temp_c ;
+//                     myDayTempText = JSON.parse(myHttp.response).current.condition.text ;
+//                     myDayTempIcon = JSON.parse(myHttp.response).current.condition.icon ;
         
-                    nextDayMaxTemp = JSON.parse(myHttp.response).forecast.forecastday[1].day.maxtemp_c ;
-                    nextDayMinTemp = JSON.parse(myHttp.response).forecast.forecastday[1].day.mintemp_c ;
-                    nextDayTempText = JSON.parse(myHttp.response).forecast.forecastday[1].day.condition.text ;
-                    nextDayTempIcon = JSON.parse(myHttp.response).forecast.forecastday[1].day.condition.icon ;
+//                     nextDayMaxTemp = JSON.parse(myHttp.response).forecast.forecastday[1].day.maxtemp_c ;
+//                     nextDayMinTemp = JSON.parse(myHttp.response).forecast.forecastday[1].day.mintemp_c ;
+//                     nextDayTempText = JSON.parse(myHttp.response).forecast.forecastday[1].day.condition.text ;
+//                     nextDayTempIcon = JSON.parse(myHttp.response).forecast.forecastday[1].day.condition.icon ;
         
-                    thirdDayMaxTemp = JSON.parse(myHttp.response).forecast.forecastday[2].day.maxtemp_c ;
-                    thirdDayMinTemp = JSON.parse(myHttp.response).forecast.forecastday[2].day.mintemp_c ;
-                    thirdDayTempText = JSON.parse(myHttp.response).forecast.forecastday[2].day.condition.text ;
-                    thirdDayTempIcon = JSON.parse(myHttp.response).forecast.forecastday[2].day.condition.icon ;
-                displayTemp ();
-            }
-        })
+//                     thirdDayMaxTemp = JSON.parse(myHttp.response).forecast.forecastday[2].day.maxtemp_c ;
+//                     thirdDayMinTemp = JSON.parse(myHttp.response).forecast.forecastday[2].day.mintemp_c ;
+//                     thirdDayTempText = JSON.parse(myHttp.response).forecast.forecastday[2].day.condition.text ;
+//                     thirdDayTempIcon = JSON.parse(myHttp.response).forecast.forecastday[2].day.condition.icon ;
+//                 displayTemp ();
+//             }
+//         })
+// }
+
+async function getWeather(city) {
+    let myHttp = await fetch(`https://api.weatherapi.com/v1/forecast.json?key=35ad5f1819154542a6620725211105&q=${city}&days=3`);
+    let myHttpData = await myHttp.json();
+    myLocation = myHttpData.location.name ;
+    myDayTemp = myHttpData.current.temp_c ;
+    myDayTempText = myHttpData.current.condition.text ;
+    myDayTempIcon = myHttpData.current.condition.icon ;
+
+    nextDayMaxTemp = myHttpData.forecast.forecastday[1].day.maxtemp_c ;
+    nextDayMinTemp = myHttpData.forecast.forecastday[1].day.mintemp_c ;
+    nextDayTempText = myHttpData.forecast.forecastday[1].day.condition.text ;
+    nextDayTempIcon = myHttpData.forecast.forecastday[1].day.condition.icon ;
+
+    thirdDayMaxTemp = myHttpData.forecast.forecastday[2].day.maxtemp_c ;
+    thirdDayMinTemp = myHttpData.forecast.forecastday[2].day.mintemp_c ;
+    thirdDayTempText = myHttpData.forecast.forecastday[2].day.condition.text ;
+    thirdDayTempIcon = myHttpData.forecast.forecastday[2].day.condition.icon ;
+    displayTemp ();
 }
 
 function displayTemp (){
@@ -175,7 +194,7 @@ function realTime() {
 
     // code to view weather of cairo when reload page 
     if(searchBox.value == "") {
-        myHttp.open("GET", `http://api.weatherapi.com/v1/forecast.json?key=35ad5f1819154542a6620725211105&q=cairo&days=3`);
+        myHttp.open("GET", `https://api.weatherapi.com/v1/forecast.json?key=35ad5f1819154542a6620725211105&q=cairo&days=3`);
         myHttp.send();
         myHttp.addEventListener("readystatechange", function(){
             if (myHttp.readyState == 4 && myHttp.status == 200) {
